@@ -1,1 +1,1 @@
-# oisp-cli
+# OISP CLI

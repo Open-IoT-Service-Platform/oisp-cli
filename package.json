@@ -1,0 +1,42 @@
+{
+  "name": "@open-iot-service-platform/oisp-cli",
+  "version": "1.0.0alpha1",
+  "description": "OISP Command Line Interface",
+  "main": "",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "mathjs": "^3.16.5",
+    "@open-iot-service-platform/oisp-sdk-js": "^1.0.0alpha1"
+  },
+  "bin": {
+    "oisp-cli": "./oisp-cli.js"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Open-IoT-Service-Platform/oisp-cli.git"
+  },
+  "keywords": [
+    "oisp",
+    "cli"
+  ],
+  "author": "Intel, CPG",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Open-IoT-Service-Platform/oisp-cli/issues"
+  },
+  "homepage": "https://github.com/Open-IoT-Service-Platform/oisp-cli",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "gruntify-eslint": "^4.0.0",
+    "grunt-mocha-istanbul": "^5.0.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^4.0.1",
+    "rewire": "^2.5.2",
+    "sinon": "^4.1.1",
+    "uuid": "^3.1.0"
+  },
+  "directories": {}
+}
