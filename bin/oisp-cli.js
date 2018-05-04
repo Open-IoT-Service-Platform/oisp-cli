@@ -36,7 +36,7 @@ var admin= require('commander'),
     alerts = require('../modules/alerts'),
     fs = require('fs'),
     path = require('path'),
-    logger = require("@open-iot-service-platform/oisp-sdk-js").lib.logger.init();
+    logger = require('../lib/logger').init();
 
 
 var helpBase = function(apiBase) {

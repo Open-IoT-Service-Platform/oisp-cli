@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 var api = require("@open-iot-service-platform/oisp-sdk-js").api.rest,
-    logger = require("@open-iot-service-platform/oisp-sdk-js").lib.logger.init(),
+    logger = require('../lib/logger').init(),
     common = require("../lib/common"),
     userAdminData = require("../lib/cli-data");
 var errorHandler = {};
