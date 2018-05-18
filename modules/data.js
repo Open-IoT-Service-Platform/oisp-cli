@@ -24,7 +24,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 "use strict";
 
 
-var api = require("@open-iot-service-platform/oisp-sdk-js").api.rest,
+var config = require('../config'),
+    api = require("@open-iot-service-platform/oisp-sdk-js")(config).api.rest,
     math = require("mathjs"),
     fs = require('fs'),
     logger = require('../lib/logger').init(),

@@ -472,7 +472,7 @@ describe(fileToTest, function() {
         var localFakeFs = Object.assign({}, fakeFs);
         localFakeFs.writeFileSync = function(inFilename, inData) {
             spy();
-            assert.equal(inFilename, "/config/global.json");
+            assert.equal(inFilename, "/config/config.json");
         };
         localFakeFs.existsSync = function(filepath) {
             return true;
@@ -482,7 +482,7 @@ describe(fileToTest, function() {
         }
         toTest.__set__("__dirname", "/file");
         toTest.__set__("fs", localFakeFs);
-        assert.equal(toTest.saveToGlobalConfig("user.name", "username"), undefined, "Could save to device config");
+        assert.equal(toTest.saveToMainConfig("user.name", "username"), undefined, "Could save to device config");
         assert.isTrue(spy.calledOnce, "writeFileSync not called!");
         done();
     });

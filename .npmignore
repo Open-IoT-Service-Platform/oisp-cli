@@ -1,3 +1,5 @@
 buildscripts/
 test/
 Gruntfile.js
+config/config.json
+data/

@@ -23,11 +23,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 "use strict";
 
-var api = require("@open-iot-service-platform/oisp-sdk-js").api.rest,
+var config = require('../config'),
+    api = require("@open-iot-service-platform/oisp-sdk-js")(config).api.rest,
     logger = require('../lib/logger').init(),
     userAdminTools = require("../lib/cli-tools"),
     userAdminData = require("../lib/cli-data"),
     common = require("../lib/common");
+    
 var errorHandler = {};
 
 

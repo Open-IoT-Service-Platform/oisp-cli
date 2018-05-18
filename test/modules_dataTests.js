@@ -25,8 +25,8 @@
 var assert =  require('chai').assert,
     rewire = require('rewire'),
     url = require('url'),
-    sinon = require('sinon'),
-    GlobalConfig = require('../config');
+    sinon = require('sinon');
+
 require("./commonTest.js");
 
 var fileToTest = "../modules/data.js";

@@ -25,8 +25,7 @@
 var assert =  require('chai').assert,
     rewire = require('rewire'),
     url = require('url'),
-    sinon = require('sinon'),
-    GlobalConfig = require('../config');
+    sinon = require('sinon');
 
 var fileToTest = "../modules/accounts.js";
 

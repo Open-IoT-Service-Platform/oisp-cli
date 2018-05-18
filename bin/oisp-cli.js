@@ -33,10 +33,7 @@ var admin= require('commander'),
     data = require('../modules/data'),
     devices = require('../modules/devices'),
     local = require('../modules/local'),
-    alerts = require('../modules/alerts'),
-    fs = require('fs'),
-    path = require('path'),
-    logger = require('../lib/logger').init();
+    alerts = require('../modules/alerts');
 
 
 var helpBase = function(apiBase) {
@@ -75,17 +72,6 @@ var helpBase = function(apiBase) {
 };
 
 admin.version(pkgJson.version)
-    .option('-C, --config [path]', "Set the config file path", function(userConfDirectory) {
-        process.userConfigPath = path.resolve(userConfDirectory , "user.js");
-        if (fs.existsSync(process.userConfigPath)) {
-            logger.info("'" + process.userConfigPath + "'" +
-                ' will be used as user config file.');
-        } else{
-            logger.error("'" + process.userConfigPath + "'" +
-                ' not contains user.js config file.');
-            process.exit(1);
-        }
-    })
     .command("help <apiBase>")
     .description("Filters help text by API base path, [all, apionly, auth, users, accounts, rules, alerts, devices, data, components, control, invites]")
     .action(helpBase);

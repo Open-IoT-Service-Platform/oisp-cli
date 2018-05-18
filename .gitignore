@@ -15,3 +15,5 @@ node_modules
 */coverage/*
 */dist/*
 *~
+config/config.json
+data
