@@ -79,7 +79,7 @@ describe(fileToTest, function() {
         var config = {
             admin_file: "admin.js"
         };
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", fakeCommon);
         assert.equal(toTest.getConfigFileName(), "/file/admin.js", "Wrong filename returned");
         done();
@@ -89,7 +89,7 @@ describe(fileToTest, function() {
     it('Shall not find config file and throw error >', function(done) {
 
         var config = {};
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", fakeCommon);
         assert.throws(toTest.getConfigFileName, /No admin file found/, "Should throw error.");
         done();
@@ -114,7 +114,7 @@ describe(fileToTest, function() {
                 assert.equal(true, false, "Should not reach this point");
             }
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.saveUserAdminBaseData(username, token), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledTwice, "SaveToConfig not called correctly");
@@ -134,7 +134,7 @@ describe(fileToTest, function() {
             assert.equal(filename, "/file/admin.js", "Wrong filename returned");
             return JSON.parse(file);
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.deepEqual(toTest.loadUserAdminBaseData(username, username), JSON.parse(file), "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "SaveToConfig not called correctly");
@@ -153,7 +153,7 @@ describe(fileToTest, function() {
             spy();
             return null;
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         var wrapper = function() {
             toTest.loadUserAdminBaseData(username, username);
@@ -181,7 +181,7 @@ describe(fileToTest, function() {
         localFakeFs.unlinkSync = function(filename) {
             spy2();
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         toTest.__set__("fs", localFakeFs);
         assert.deepEqual(toTest.initializeUserAdminBaseData(), undefined, "Return value of function does not match");
@@ -208,7 +208,7 @@ describe(fileToTest, function() {
         localFakeFs.unlinkSync = function(filename) {
             spy2();
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         toTest.__set__("fs", localFakeFs);
         assert.deepEqual(toTest.initializeUserAdminBaseData(), undefined, "Return value of function does not match");
@@ -246,7 +246,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.deepEqual(toTest.addAccount({name: "Account2"}), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -279,7 +279,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.deepEqual(toTest.addAccount({name: "Account2"}), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -317,7 +317,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.deepEqual(toTest.updateAccount({name: "Account3", "id": "1"}), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -348,7 +348,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.updateAccount({name: "Account2", "id": "2"}), undefined, "Return value of function does not match");
         admin_file = { accounts: [] }
@@ -387,7 +387,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.deleteAccount("1"), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -418,7 +418,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.deleteAccount("2"), undefined, "Return value of function does not match");
         admin_file = {
@@ -466,7 +466,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.replaceAccounts({name: "Account2", "id": "2"}), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -498,7 +498,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.replaceAccounts({}), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -534,7 +534,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.replaceAllDevices(0,[{"name": "devicename2", "deviceId": "2"}]), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -566,7 +566,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.replaceAllDevices(0,[{"name": "devicename2", "deviceId": "2"}]), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -607,7 +607,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.removeDevice(0, 1), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -649,7 +649,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.replaceDevice(0, 1, {"deviceId": "3", "name": "devicename3"}), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -690,7 +690,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.addDevice(0, {"deviceId": "2", "name": "devicename2"}), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -728,7 +728,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.addDevice(0, {"deviceId": "2", "name": "devicename2"}), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -760,7 +760,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.addDevice(0, {"deviceId": "2", "name": "devicename2"}), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -806,7 +806,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.addComponent(0, 0, {"cid": "2", "name": "name2"}), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -850,7 +850,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.addComponent(0, 0, {"cid": "2", "name": "name2"}), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
@@ -897,7 +897,7 @@ describe(fileToTest, function() {
             spy2();
             assert.deepEqual(data,result_admin_file, "Incorrect result");
         }
-        toTest.__set__("localConf", config);
+        toTest.__set__("config", config);
         toTest.__set__("common", localFakeCommon);
         assert.equal(toTest.deleteComponent(0, 0, 1), undefined, "Return value of function does not match");
         assert.isTrue(spy.calledOnce, "readConfig not called correctly");
