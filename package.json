@@ -7,7 +7,7 @@
     "commander": "^2.11.0",
     "mathjs": "^3.16.5",
     "winston": "^2.4.0",
-    "@open-iot-service-platform/oisp-sdk-js": "^1.0.0alpha1"
+    "@open-iot-service-platform/oisp-sdk-js": "^1.0.0beta1"
   },
   "bin": {
     "oisp-cli": "./oisp-cli.js"
