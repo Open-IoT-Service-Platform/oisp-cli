@@ -32,6 +32,7 @@ var config = require('../config'),
     userAdminTools = require("../lib/cli-tools"),
     common = require("../lib/common"),
     userAdminData = require("../lib/cli-data");
+    
 var errorHandler = {};
 
 var submitData = function(accountId, deviceId, cid, value, jsonString) {
@@ -83,20 +84,70 @@ var submitData = function(accountId, deviceId, cid, value, jsonString) {
             errorHandler(null, common.errors["responseError"].code);
         }
     });
-    
 };
 
 
 var submitDataFromFile = function(accountId, deviceId, cid, filename, jsonString) {
     logger.info("Starting submitDataFromFile ...");
-    var value;
+    
+    var userAdminDataObj = userAdminData.loadUserAdminBaseData();
+    var targetAccount = userAdminTools.findAccountId(accountId, userAdminDataObj.accounts); 
+    if (targetAccount === null) {
+        logger.error(common.errors["accountIdError"].message);
+        errorHandler(null, common.errors["accountIdError"].code);
+    }
+    userAdminDataObj.accountId = targetAccount.id;
+    var targetDevice = userAdminTools.findDeviceId(deviceId, userAdminDataObj.accounts[targetAccount.index]);
+    if (targetDevice === null) {
+        logger.error(common.errors["deviceIdError"].message);
+        errorHandler(null, common.errors["deviceIdError"].code);
+    }
+    userAdminDataObj.deviceId = targetDevice.id;
+    var targetCid = userAdminTools.findCid(cid, userAdminDataObj.accounts[targetAccount.index].devices[targetDevice.index]);
+    if (targetCid === null) {
+        logger.error(common.errors["cidError"].message);
+        errorHandler(null, common.errors["cidError"].code);
+    }
+    userAdminDataObj.cid = targetCid.id;
+    
+    var file;
     try {
-        value = fs.readFileSync(filename, {encoding: "utf8"});
+        file = fs.readFileSync(filename);
     } catch (e) {
         logger.error(common.errors["fsError"].message + ": " + e);
         errorHandler(null, common.errors["fsError"].code);
     }
-    submitData(accountId, deviceId, cid, value.trim(), jsonString);
+    
+    var on = (new Date()).getTime();
+    userAdminDataObj.body = {
+        "on": on,
+        "accountId": targetAccount.id,
+        "data": [
+            {
+                "componentId": targetCid.id,
+                "on": on,
+                "value": file
+            }
+        ]       
+    };
+    
+    if (jsonString) {
+        try {
+            userAdminDataObj.body.data[0].attributes = JSON.parse(jsonString).attributes;
+        } catch (e) {
+            logger.error(common.errors["parseJsonError"].message + ": " + e);
+            errorHandler(null, common.errors["parseJsonError"].code);
+        }
+    }
+    
+    api.data.submitData(userAdminDataObj, function(err, response) {
+        if (!err && response) {
+            logger.info("Info retrieved: ", response);
+        } else {
+            logger.error(common.errors["responseError"].message + ": " + err);
+            errorHandler(null, common.errors["responseError"].code);
+        }
+    });
 };
 
 

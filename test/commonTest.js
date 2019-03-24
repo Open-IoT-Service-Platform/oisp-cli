@@ -252,8 +252,8 @@ FakeDate.prototype.getTime = function() {
 
 global.fakeFs = {
     readFileSync:  function(filename, options) {
-        if (filename === "value.txt" && options.encoding === "utf8") {
-            return String(value);
+        if (filename === "value.txt") {
+            return new Buffer(0);
         } else {
             return -1;
         }

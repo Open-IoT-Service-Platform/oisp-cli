@@ -213,7 +213,7 @@ describe(fileToTest, function() {
                 {
                     componentId: cid,
                     on: on,
-                    value: value,
+                    value: new Buffer(0),
                     attributes: {
                         reading: "digital"
                     }
