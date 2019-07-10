@@ -26,18 +26,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 "use strict";
 var admin= require('commander'),
-    pkgJson = require('../package.json'),
+    pkgJson = require('../package.json');
+
+/* Modules */
+var accounts = require('../modules/accounts'),
+    alerts = require('../modules/alerts'),
     auth = require('../modules/auth'),
-    accounts = require('../modules/accounts'),
-    users = require('../modules/users'),
+    cmpcatalog = require('../modules/cmpcatalog'),
     data = require('../modules/data'),
     devices = require('../modules/devices'),
     local = require('../modules/local'),
-    alerts = require('../modules/alerts');
-
+    users = require('../modules/users');
 
 var helpBase = function(apiBase) {
-    if ( ! apiBase.match(new RegExp("^regular$|^all$|^apionly$|^auth$|^users$|^accounts$|^rules$|^alerts$|^devices$|^data$|^components$|^control$|^invites$"))) {
+    if ( ! apiBase.match(new RegExp("^regular$|^all$|^apionly$|^auth$|^users$|^accounts$|^rules$|^alerts$|^devices$|^data$|^components$|^control$|^invites$|^cmpcatalog$"))) {
         console.log("Unknown apiBase command");
         return;
     }
@@ -73,7 +75,7 @@ var helpBase = function(apiBase) {
 
 admin.version(pkgJson.version)
     .command("help <apiBase>")
-    .description("Filters help text by API base path, [all, apionly, auth, users, accounts, rules, alerts, devices, data, components, control, invites]")
+    .description("Filters help text by API base path, [all, apionly, auth, users, accounts, rules, alerts, devices, data, components, control, invites, cmpcatalog]")
     .action(helpBase);
 
 /* Error handling */
@@ -88,13 +90,14 @@ var errorHandler = function(error, code) {
 /*
  * Add commando as option
  */
-auth.addCommand(admin, errorHandler);
-users.addCommand(admin, errorHandler);
 accounts.addCommand(admin, errorHandler);
-devices.addCommand(admin, errorHandler);
-data.addCommand(admin, errorHandler);
-local.addCommand(admin, errorHandler);
 alerts.addCommand(admin, errorHandler);
+auth.addCommand(admin, errorHandler);
+cmpcatalog.addCommand(admin, errorHandler);
+data.addCommand(admin, errorHandler);
+devices.addCommand(admin, errorHandler);
+local.addCommand(admin, errorHandler);
+users.addCommand(admin, errorHandler);
 
 admin.command('*')
     .description('Error message for non valid command')

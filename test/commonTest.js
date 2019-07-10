@@ -185,12 +185,13 @@ global.fakeUserAdminData = {
 
 
 global.fakeApi = {
-    data:     {},
-    users:    {},
-    accounts: {},
-    devices:  {},
-    auth:     {},
-    alerts:   {}
+    accounts:  {},
+    alerts:    {},
+    auth:      {},
+    cmpcatalog: {},
+    data:      {},
+    devices:   {},
+    users:     {}
 }
 
 
