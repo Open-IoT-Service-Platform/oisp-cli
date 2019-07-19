@@ -1,6 +1,6 @@
 {
   "name": "@open-iot-service-platform/oisp-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "OISP Command Line Interface",
   "main": "",
   "dependencies": {
