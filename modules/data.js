@@ -185,10 +185,10 @@ var searchDataToFile = function(accountId, deviceId, cid, from, to, filename/*, 
         }
     };
     if (from !== "") {
-        userAdminDataObj.body.from = math.eval(from);
+        userAdminDataObj.body.from = math.evaluate(from);
     }
     if (to !== "") {
-        userAdminDataObj.body.to = math.eval(to);
+        userAdminDataObj.body.to = math.evaluate(to);
     }
     api.data.searchData(userAdminDataObj, function(err, response) {
         if (!err && response) {
@@ -214,7 +214,7 @@ var searchDataToFile = function(accountId, deviceId, cid, from, to, filename/*, 
 
 var searchData = function(accountId, deviceId, cid, from, to, jsonString) {
     logger.info("Starting searchData ...");
-    searchDataToFile(accountId, deviceId, cid, from, to, null,jsonString);
+    searchDataToFile(accountId, deviceId, cid, from, to, null, jsonString);
 };
 
 
@@ -236,10 +236,10 @@ var searchDataAdvancedToFile = function(accountId, from, to, filename, jsonStrin
         }
     }
     if (from !== "") {
-        userAdminDataObj.body.from = math.eval(from);
+        userAdminDataObj.body.from = math.evaluate(from);
     }
     if (to !== "") {
-        userAdminDataObj.body.to = math.eval(to);
+        userAdminDataObj.body.to = math.evaluate(to);
     }
     api.data.searchDataAdvanced(userAdminDataObj, function(err, response) {
         if (!err && response) {
