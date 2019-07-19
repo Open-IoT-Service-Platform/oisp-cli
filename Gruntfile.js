@@ -50,38 +50,26 @@ module.exports = function(grunt) {
                 }
             }
         },
-        mocha_istanbul: {
-            local: {
-                src: 'test/', // the folder, not the files
+        nyc: {
+            all: {
                 options: {
-                    ui: 'bdd',
-                    coverage: true,
+                    include: ['bin/**', 'lib/**', 'modules/**'],
                     recursive: true,
-                    reporter: 'list',
-                    timeout: 20000,
-                    mask: '*Tests.js',
-                    check: {
-                        lines: 60,
-                        statements: 60,
-                        function: 60
-                    },
-                    root: '.', // define where the cover task should consider the root of libraries that are covered by tests
-                    coverageFolder: 'dist/coverage',
-                    reportFormats: ['lcov']
-                }
-            },
-
+                    reporter: ['lcov', 'text-summary'],
+                    reportDir: 'dist/coverage',
+                    tempDir: 'dist/temp',
+                    all: true
+                },
+                cmd: false,
+                args: ['mocha'],
+                rawArgs: ['--colors']
+            }
         }
     });
 
-    grunt.event.on('coverage', function(lcovFileContents, done) {
-        // Check below
-        done();
-    });
-
     grunt.loadNpmTasks('gruntify-eslint');
-    grunt.loadNpmTasks('grunt-mocha-istanbul');
+    grunt.loadNpmTasks('grunt-simple-nyc');
 
     // Default task(s).
-    grunt.registerTask('default', ['eslint:local', 'eslint:tests', 'mocha_istanbul:local']);
+    grunt.registerTask('default', ['eslint:local', 'eslint:tests', 'nyc:all']);
 };
