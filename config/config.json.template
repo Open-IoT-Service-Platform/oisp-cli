@@ -2,9 +2,7 @@
 	"data_directory": "./data",
 	"admin_file": "admin.js",
 	"logger": {
-		"LEVEL": "info",
-		"PATH": "/tmp/",
-		"MAX_SIZE": 134217728
+		"level": "info"
 	},
 	"default_connector": "rest+ws",
 	"connector": {
