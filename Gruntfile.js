@@ -53,7 +53,7 @@ module.exports = function(grunt) {
         nyc: {
             all: {
                 options: {
-                    include: ['bin/**', 'lib/**', 'modules/**'],
+                    include: ['lib/**', 'modules/**'],
                     recursive: true,
                     reporter: ['lcov', 'text-summary'],
                     reportDir: 'dist/coverage',
