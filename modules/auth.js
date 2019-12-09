@@ -34,7 +34,7 @@ var getAuthToken = function(username, password) {
     userAdminData.initializeUserAdminBaseData();
     api.auth.getAuthToken({body: {username: username, password: password}}, function(err, response) {
         if (!err && response) {
-            logger.info("Retrieved user token :", response.token);
+            logger.info("Retrieved user token: %s", response.token);
             userAdminData.saveUserAdminBaseData(username, response.token);
         } else {
             logger.error(common.errors["responseError"].message + ": " + err);
@@ -48,7 +48,7 @@ var getAuthTokenInfo = function() {
     var user_admin_data = userAdminData.loadUserAdminBaseData();
     api.auth.getAuthTokenInfo(user_admin_data, function(err, response) {
         if (!err && response) {
-            logger.info("Info retrieved: ", JSON.stringify(response));
+            logger.info("Info retrieved: %s", JSON.stringify(response));
             if (! Object.keys(response.payload.accounts).length) {
                 response.payload.accounts = []; //should be array to apply array methods later
             }
