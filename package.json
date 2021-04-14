@@ -4,7 +4,7 @@
   "description": "OISP Command Line Interface",
   "main": "",
   "dependencies": {
-    "@open-iot-service-platform/oisp-sdk-js": "^1.1.2",
+    "@open-iot-service-platform/oisp-sdk-js": "^1.1.4",
     "commander": "^2.20.0",
     "mathjs": "^6.0.3",
     "winston": "^3.2.1"
