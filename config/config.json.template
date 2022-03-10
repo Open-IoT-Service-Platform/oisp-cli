@@ -4,7 +4,7 @@
 	"logger": {
 		"level": "info"
 	},
-	"default_connector": "rest+ws",
+	"default_connector": "rest",
 	"connector": {
 		"rest": {
 			"host": "localhost",
@@ -12,20 +12,6 @@
 			"protocol": "http",
 			"strictSSL": false,
 			"timeout": 30000,
-			"proxy": {
-				"host": false,
-				"port": false
-			}
-		},
-		"ws": {
-			"host": "localhost",
-			"port": 5000,
-			"minRetryTime": 2500,
-			"maxRetryTime": 600000,
-			"testTimeout": 40000,
-			"pingPongIntervalMs": 30000,
-			"enablePingPong": true,
-			"secure": false,
 			"proxy": {
 				"host": false,
 				"port": false
