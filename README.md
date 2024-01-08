@@ -1,6 +1,6 @@
 # OISP CLI
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FOpen-IoT-Service-Platform%2Foisp-cli.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FOpen-IoT-Service-Platform%2Foisp-cli?ref=badge_shield)
-
+# NOTE: This project reached end of support and is no longer maintained. Parts of the project are continued in https://github.com/IndustryFusion/DigitalTwin.
 
 The OISP Command-Line Interface allows you to perform common operations on an OISP instance using the REST API interface.
 
